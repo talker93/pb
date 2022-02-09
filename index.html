@@ -1,69 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.17e50649.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codec Demo</title>
-    <script type="module" crossorigin src="assets/index.82d4d4ef.js"></script>
-    <link rel="modulepreload" href="assets/vendor.e711fc39.js">
-    <link rel="stylesheet" href="assets/index.28cfde08.css">
-  </head>
-  <body>
-    <!-- <div id="app"></div> -->
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Voice-change-O-matic</title>
+	
+	<!--[if le IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="scripts/respond.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Righteous|Nova+Square' rel='stylesheet' type='text/css'>
+	  <link href="styles/normalize.css" rel="stylesheet" type="text/css">
+    <link href="styles/app.css" rel="stylesheet" type="text/css">
+	
+</head>
+<body>
+  <div class="wrapper">
     
-    <div>
-      <h2>Step 1: start your webcam</h2>
-      <h3>Local Stream Setting</h3>
-      <div class="select">
-        <input type="checkbox" id="muteMonitor" value="yes" checked="true">
-        <label>Mute Monitoring Signal</label>
-      </div>
-      <div class="select">
-        <input type="checkbox" id="muteMe" value="yes" checked="true">
-        <label>Mute Myself</label>
-      </div>
-      <div class="select">
-        <label>Audio input source: </label>
-        <select id="audioSource"></select>
+    <header>
+      <h1>Voice-change-O-matic</h1>
+    </header>
+
+    <canvas class="visualizer" width="640" height="100"></canvas> 
+
+    <form class="controls">
+      <div>
+        <label for="voice">Voice setting</label>
+        <select id="voice" name="voice">
+          <option value="distortion">Distortion</option>
+          <option value="convolver">Reverb</option>
+          <option value="biquad">Bass Boost</option>
+          <option value="off" selected>Off</option>
+        </select>
       </div>
       <div>
-        <!-- <div class="label">Local Audio player</div> -->
-        <br>
-        <audio id="webcamVideo"  controls></audio>
-      </div>
-      <h3>Remote Stream Setting</h3>
-      <div class="select">
-        <label>Audio output destination: </label>
-        <select id="audioOutput"></select>
+        <label for="visual">Visualizer setting</label>
+        <select id="visual" name="visual">
+          <option value="sinewave">Sinewave</option>
+          <option value="frequencybars" selected>Frequency bars</option>
+          <option value="off">Off</option>
+        </select>
       </div>
       <div>
-        <!-- <div class="label">Remote Audio Player</div> -->
-        <br>
-        <audio id="remoteVideo"  controls></audio>
+        <a class="mute">Mute</a>
       </div>
-      <button id="webcamButton">Start Devices</button>
-    </div>
+    </form>
 
-    <div>
-      <h2>Step 2: create a call</h2>
-      <button id="callButton" disabled>Create Call</button>
-    </div>
 
-    <div>
-      <h2>Step 3: Join this call</h2>
-      <input id="callInput">
-      <button id="answerButton">Answer</button>
-    </div>
+  </div>
 
-    <div>
-      <h2>Step 4: Hangup</h2>
-      <button id="hangupButton" disabled>Hangup</button>
-    </div>
+  <label for="toggle">❔</label>
+  <input type="checkbox" id="toggle">
+  <aside>
+    <h2>Information</h2>
 
-    <div>
-      <button id="testButton">Test</button>
-    </div>
-    
-  </body>
+    <p>Voice-change-O-matic is built using:</p>
+
+    <ul>
+
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getUserMedia">getUserMedia</a>, which is currently supported in Firefox, Opera (desktop/mobile) and Chrome (desktop only.) Firefox requires no prefix; the others require <code>webkit</code> prefixes.</li>
+
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>, which is currently supported in Firefox, Chrome, Safari (desktop/mobile) and Opera (desktop only). Firefox and Opera require no prefix; Chrome requires <code>webkit</code> prefixes.</li>
+
+    </ul>
+
+
+
+    <button id="install-btn">Install app</button>
+  </aside>
+
+  <!-- The following element pulls in the script for the default template functionality -->
+      
+    <script src="scripts/install.js"></script>  
+
+    <!-- Below is your custom application script -->
+
+    <script src="scripts/app.js"></script>
+	
+</body>
 </html>
