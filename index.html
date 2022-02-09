@@ -1,83 +1,69 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta charset="utf-8" />
-	<title>Web Audio Playground</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.17e50649.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codec Demo</title>
+    <script type="module" crossorigin src="assets/index.82d4d4ef.js"></script>
+    <link rel="modulepreload" href="assets/vendor.e711fc39.js">
+    <link rel="stylesheet" href="assets/index.28cfde08.css">
+  </head>
+  <body>
+    <!-- <div id="app"></div> -->
+    
+    <div>
+      <h2>Step 1: start your webcam</h2>
+      <h3>Local Stream Setting</h3>
+      <div class="select">
+        <input type="checkbox" id="muteMonitor" value="yes" checked="true">
+        <label>Mute Monitoring Signal</label>
+      </div>
+      <div class="select">
+        <input type="checkbox" id="muteMe" value="yes" checked="true">
+        <label>Mute Myself</label>
+      </div>
+      <div class="select">
+        <label>Audio input source: </label>
+        <select id="audioSource"></select>
+      </div>
+      <div>
+        <!-- <div class="label">Local Audio player</div> -->
+        <br>
+        <audio id="webcamVideo"  controls></audio>
+      </div>
+      <h3>Remote Stream Setting</h3>
+      <div class="select">
+        <label>Audio output destination: </label>
+        <select id="audioOutput"></select>
+      </div>
+      <div>
+        <!-- <div class="label">Remote Audio Player</div> -->
+        <br>
+        <audio id="remoteVideo"  controls></audio>
+      </div>
+      <button id="webcamButton">Start Devices</button>
+    </div>
 
-	<link rel="shortcut icon" href="favicon.ico" />
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Droid+Serif:400italic" />
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/main.css" />
+    <div>
+      <h2>Step 2: create a call</h2>
+      <button id="callButton" disabled>Create Call</button>
+    </div>
 
-    <script src="http://cwilso.github.io/AudioContext-MonkeyPatch/AudioContextMonkeyPatch.js"></script>
+    <div>
+      <h2>Step 3: Join this call</h2>
+      <input id="callInput">
+      <button id="answerButton">Answer</button>
+    </div>
 
-	<script src="js/main.js"></script>
-	<script src="js/dragging.js"></script>
-	<script src="js/analyser.js"></script>
-	<script>
-	if (window != window.top)
-		document.write("<style>#header {display:none}</style>")
-	</script>
-</head>
-<body>
-	<div id="main" class="container">
-		<header id="header">
-			<img src="img/logo.png" alt="Web Audio Playground: A demonstration of the web audio API // v 1.0" />	
-		</header>
-		<nav id="nav">
-			<ul id="controls" class="container">
-				<li>
-					<a href="#">Add Audio Source</a>
-					<div class="sub-menu">
-						<ul>
-							<li><a href="#" id="cabs">Audio Buffer Source</a></li>
-<!--
-							<li><a href="#">Audio Buffer Source From URL</a></li>
--->							<li><a href="#" id="cosc">Oscillator</a></li>
-							<li><a href="#" id="cliv">Live Input</a></li>
-						</ul>
-					</div>	
-				</li>
-				<li>
-					<a href="#">Add Module</a>
-					<div class="sub-menu">
-						<ul>
-							<li><a href="#" id="cbqf">Biquad Filter</a></li>
-							<li><a href="#" id="cdel">Delay Node</a></li>
-							<li><a href="#" id="cdyc">Dynamics Compressor</a></li>
-							<li><a href="#" id="cgai">Gain Node</a></li>
-							<li><a href="#" id="ccon">Convolver</a></li>
-							<li><a href="#" id="cana">Analyser</a></li>
-						</ul>
-					</div>	
-				</li>
-			</ul>
-		</nav>
-		<section id="modules" class="container">
+    <div>
+      <h2>Step 4: Hangup</h2>
+      <button id="hangupButton" disabled>Hangup</button>
+    </div>
 
-		</section>
-	<div class="link">Code available on <a href="https://github.com/cwilso/WebAudio">GitHub</a>.</div>
-	</div> <!-- /#main -->
-
-	<div id="output" class="destination">
-		<div class="node node-input"><span class="node-button">&nbsp;</span></div>
-	</div> <!-- /#output -->
-
-	<svg id=svgCanvas xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:100%; height:100%; position:absolute; top:0; left:0; z-index:-1;"></svg>
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35593052-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-</body>
+    <div>
+      <button id="testButton">Test</button>
+    </div>
+    
+  </body>
 </html>
