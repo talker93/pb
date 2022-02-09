@@ -1,82 +1,83 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Voice-change-O-matic</title>
-	
-	<!--[if le IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="scripts/respond.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link href='https://fonts.googleapis.com/css?family=Righteous|Nova+Square' rel='stylesheet' type='text/css'>
-	  <link href="styles/normalize.css" rel="stylesheet" type="text/css">
-    <link href="styles/app.css" rel="stylesheet" type="text/css">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8" />
+	<title>Web Audio Playground</title>
+
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Droid+Serif:400italic" />
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/main.css" />
+
+    <script src="http://cwilso.github.io/AudioContext-MonkeyPatch/AudioContextMonkeyPatch.js"></script>
+
+	<script src="js/main.js"></script>
+	<script src="js/dragging.js"></script>
+	<script src="js/analyser.js"></script>
+	<script>
+	if (window != window.top)
+		document.write("<style>#header {display:none}</style>")
+	</script>
 </head>
 <body>
-  <div class="wrapper">
-    
-    <header>
-      <h1>Voice-change-O-matic</h1>
-    </header>
+	<div id="main" class="container">
+		<header id="header">
+			<img src="img/logo.png" alt="Web Audio Playground: A demonstration of the web audio API // v 1.0" />	
+		</header>
+		<nav id="nav">
+			<ul id="controls" class="container">
+				<li>
+					<a href="#">Add Audio Source</a>
+					<div class="sub-menu">
+						<ul>
+							<li><a href="#" id="cabs">Audio Buffer Source</a></li>
+<!--
+							<li><a href="#">Audio Buffer Source From URL</a></li>
+-->							<li><a href="#" id="cosc">Oscillator</a></li>
+							<li><a href="#" id="cliv">Live Input</a></li>
+						</ul>
+					</div>	
+				</li>
+				<li>
+					<a href="#">Add Module</a>
+					<div class="sub-menu">
+						<ul>
+							<li><a href="#" id="cbqf">Biquad Filter</a></li>
+							<li><a href="#" id="cdel">Delay Node</a></li>
+							<li><a href="#" id="cdyc">Dynamics Compressor</a></li>
+							<li><a href="#" id="cgai">Gain Node</a></li>
+							<li><a href="#" id="ccon">Convolver</a></li>
+							<li><a href="#" id="cana">Analyser</a></li>
+						</ul>
+					</div>	
+				</li>
+			</ul>
+		</nav>
+		<section id="modules" class="container">
 
-    <canvas class="visualizer" width="640" height="100"></canvas> 
+		</section>
+	<div class="link">Code available on <a href="https://github.com/cwilso/WebAudio">GitHub</a>.</div>
+	</div> <!-- /#main -->
 
-    <form class="controls">
-      <div>
-        <label for="voice">Voice setting</label>
-        <select id="voice" name="voice">
-          <option value="distortion">Distortion</option>
-          <option value="convolver">Reverb</option>
-          <option value="biquad">Bass Boost</option>
-          <option value="off" selected>Off</option>
-        </select>
-      </div>
-      <div>
-        <label for="visual">Visualizer setting</label>
-        <select id="visual" name="visual">
-          <option value="sinewave">Sinewave</option>
-          <option value="frequencybars" selected>Frequency bars</option>
-          <option value="off">Off</option>
-        </select>
-      </div>
-      <div>
-        <a class="mute">Mute</a>
-      </div>
-    </form>
+	<div id="output" class="destination">
+		<div class="node node-input"><span class="node-button">&nbsp;</span></div>
+	</div> <!-- /#output -->
 
+	<svg id=svgCanvas xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:100%; height:100%; position:absolute; top:0; left:0; z-index:-1;"></svg>
 
-  </div>
+<script type="text/javascript">
 
-  <label for="toggle">❔</label>
-  <input type="checkbox" id="toggle">
-  <aside>
-    <h2>Information</h2>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35593052-1']);
+  _gaq.push(['_trackPageview']);
 
-    <p>Voice-change-O-matic is built using:</p>
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
-    <ul>
-
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getUserMedia">getUserMedia</a>, which is currently supported in Firefox, Opera (desktop/mobile) and Chrome (desktop only.) Firefox requires no prefix; the others require <code>webkit</code> prefixes.</li>
-
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>, which is currently supported in Firefox, Chrome, Safari (desktop/mobile) and Opera (desktop only). Firefox and Opera require no prefix; Chrome requires <code>webkit</code> prefixes.</li>
-
-    </ul>
-
-
-
-    <button id="install-btn">Install app</button>
-  </aside>
-
-  <!-- The following element pulls in the script for the default template functionality -->
-      
-    <script src="scripts/install.js"></script>  
-
-    <!-- Below is your custom application script -->
-
-    <script src="scripts/app.js"></script>
-	
+</script>
 </body>
 </html>
