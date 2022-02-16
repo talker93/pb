@@ -4,69 +4,92 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.17e50649.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="NexusUI.js"></script>"
     <title>Codec Demo</title>
-    <script type="module" crossorigin src="assets/index.bc640c5e.js"></script>
+    <script type="module" crossorigin src="assets/index.9aad047b.js"></script>
     <link rel="modulepreload" href="assets/vendor.e711fc39.js">
-    <link rel="stylesheet" href="assets/index.28cfde08.css">
+    <link rel="stylesheet" href="assets/index.5093dfb4.css">
   </head>
   <body>
     <!-- <div id="app"></div> -->
     
     <div>
-      <h2>Step 1: start your webcam</h2>
+      <h2>Step 1: initialize your device</h2>
       <h3>Local Stream Setting</h3>
+
       <div class="select">
-        <input type="checkbox" id="muteMonitor" value="yes" checked="true">
-        <label>Mute Monitoring Signal</label>
+        <div id="muteMo" style="display: inline-block"></div>
+          <input type="checkbox" id="muteMonitor" value="yes" checked="true" style = "display: none;">
+          <label>Mute Monitoring Signal</label>
       </div>
       <div class="select">
-        <input type="checkbox" id="muteMe" value="yes" checked="true">
+        <div  id="muteMy" style="display:inline-block"></div>
+        <input type="checkbox" id="muteMe" value="yes" checked="true" style="display:none;">
         <label>Mute Myself</label>
       </div>
       <div class="select">
         <label>Audio input source: </label>
-        <select id="audioSource"></select>
+        <select id="audioSource" style="display:none;"></select>
+        <div id="audioSourceSelect" style="display:inline-block"></div>
       </div>
-      <div>
-        <!-- <div class="label">Local Audio player</div> -->
+      <!-- <div class="label">Local Audio player</div> -->
+      <div style = "display:none">
         <br>
         <audio id="webcamVideo"  controls></audio>
       </div>
       <h3>Remote Stream Setting</h3>
       <div class="select">
         <label>Audio output destination: </label>
-        <select id="audioOutput"></select>
+        <select id="audioOutput" style="display:none"></select>
+        <div id="audioOutputSelect" style="display:inline-block"></div>
       </div>
-      <div>
-        <!-- <div class="label">Remote Audio Player</div> -->
-        <br>
+      <!-- <div class="label">Remote Audio Player</div> -->
+      <div style = "display:none">
         <audio id="remoteVideo"  controls></audio>
       </div>
-      <button id="webcamButton">Start Devices</button>
+      <br>
+      <div id="startDevices" style="display:inline-block"></div>
+      <button id="webcamButton" style="display:none">Start Devices</button>
     </div>
 
     <div>
-      <h2>Step 2: create a call</h2>
+      <h2>Step 2: create or join a call</h2>
       <button id="callButton" disabled>Create Call</button>
-    </div>
-
-    <div>
-      <h2>Step 3: Join this call</h2>
       <input id="callInput">
-      <button id="answerButton">Answer</button>
+      <button id="answerButton" disabled>Answer</button>
     </div>
+    <div id="callMessage"></div>
 
-    <div>
-      <h2>Step 4: Hangup</h2>
+    <!-- hangup is hidden until being deployed to real app-->
+    <div style = "display: none;">
+      <h2>Step 3: Hangup</h2>
       <button id="hangupButton" disabled>Hangup</button>
     </div>
 
     <div>
-      <h2>Step 5: Apply FX</h2>
+      <h2>Step 3: Apply FX</h2>
+      <p>Compressor</p>
+      <div id="compressor"></div>
+      <p>Reverb</p>
+      <div id="reverb"></div>
+      <!-- <input type="range" id="reverb" min="0" max="20" /> -->
+      <p>EQ</p>
+      <div id="eq1">LowFreq</div>
+      <!-- <input type="range" id="EQ1" min="-20" max="20" />LowFreq -->
+      <div id="eq2">MidFreq</div>
+      <!-- <input type="range" id="EQ2" min="-20" max="20" />MidFreq -->
+      <div id="eq3">HighFreq</div>
+      <!-- <input type="range" id="EQ3" min="-20" max="20" />HighFreq -->
       <p>Gain</p>
-      <input type="range" id="gain" min="-20" max="40" />
+      <div id="gainValue"></div>
+      <input type="range" id="gain" min="-20" max="40" style="display:none"/>
       <p>Pan</p>
-      <input type="range" id="pan" min="-1" max="1" />
+      <div id="panValue"></div>
+      <input type="range" id="pan" min="-1" max="1"  style="display:none"/>
+      <p>Oscilloscope</p>
+      <div id="oScope"></div>
+      <p>Spectrogram</p>
+      <div id="spec"></div>
     </div>
 
     <div>
