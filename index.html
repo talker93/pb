@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="NexusUI.js"></script>"
     <title>Codec Demo</title>
-    <script type="module" crossorigin src="assets/index.43c03f17.js"></script>
+    <script type="module" crossorigin src="assets/index.aabf53f6.js"></script>
     <link rel="modulepreload" href="assets/vendor.e711fc39.js">
-    <link rel="stylesheet" href="assets/index.5093dfb4.css">
+    <link rel="stylesheet" href="assets/index.39c4121e.css">
   </head>
   <body>
     <!-- <div id="app"></div> -->
@@ -29,8 +29,8 @@
       </div>
       <div class="select">
         <label>Audio input source: </label>
-        <select id="audioSource" style="display:none;"></select>
-        <div id="audioSourceSelect" style="display:inline-block"></div>
+        <select id="audioSource"></select>
+        <div id="audioSourceSelect" style="display:none"></div>
       </div>
       <!-- <div class="label">Local Audio player</div> -->
       <div style = "display:none">
@@ -40,8 +40,8 @@
       <h3>Remote Stream Setting</h3>
       <div class="select">
         <label>Audio output destination: </label>
-        <select id="audioOutput" style="display:none"></select>
-        <div id="audioOutputSelect" style="display:inline-block"></div>
+        <select id="audioOutput"></select>
+        <div id="audioOutputSelect" style="display:none"></div>
       </div>
       <!-- <div class="label">Remote Audio Player</div> -->
       <div style = "display:none">
@@ -74,18 +74,18 @@
       <div id="reverb"></div>
       <!-- <input type="range" id="reverb" min="0" max="20" /> -->
       <p>EQ</p>
-      <div id="eq1">LowFreq</div>
+      <div id="eq1" style="display: inline-block">LowFreq</div>
       <!-- <input type="range" id="EQ1" min="-20" max="20" />LowFreq -->
-      <div id="eq2">MidFreq</div>
+      <div id="eq2" style="display: inline-block">MidFreq</div>
       <!-- <input type="range" id="EQ2" min="-20" max="20" />MidFreq -->
-      <div id="eq3">HighFreq</div>
+      <div id="eq3" style="display: inline-block">HighFreq</div>
       <!-- <input type="range" id="EQ3" min="-20" max="20" />HighFreq -->
       <p>Gain</p>
-      <div id="gainValue"></div>
-      <input type="range" id="gain" min="-20" max="40" style="display:none"/>
+      <div id="gain"></div>
+      <!-- <input type="range" id="gain" min="-20" max="40" style="display:none"/> -->
       <p>Pan</p>
-      <div id="panValue"></div>
-      <input type="range" id="pan" min="-1" max="1"  style="display:none"/>
+      <div id="pan"></div>
+      <!-- <input type="range" id="pan" min="-1" max="1"  style="display:none"/> -->
       <p>Oscilloscope</p>
       <div id="oScope"></div>
       <p>Spectrogram</p>
