@@ -1,82 +1,114 @@
 <!DOCTYPE html>
-<html lang="en-us">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Voice-change-O-matic</title>
-	
-	<!--[if le IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="scripts/respond.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link href='https://fonts.googleapis.com/css?family=Righteous|Nova+Square' rel='stylesheet' type='text/css'>
-	  <link href="styles/normalize.css" rel="stylesheet" type="text/css">
-    <link href="styles/app.css" rel="stylesheet" type="text/css">
-	
-</head>
-<body>
-  <div class="wrapper">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.17e50649.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="NexusUI.js"></script>
+    <title>Codec Demo</title>
+    <script type="module" crossorigin src="/assets/index.2094ad14.js"></script>
+    <link rel="modulepreload" href="assets/vendor.e711fc39.js">
+    <link rel="stylesheet" href="assets/index.4bcdb152.css">
+  </head>
+  <body>
+    <!-- <div id="app"></div> -->
     
-    <header>
-      <h1>Voice-change-O-matic</h1>
-    </header>
+    <div>
+      <h2>Step 1: initialize your device</h2>
+      <h3>Local Stream Setting</h3>
 
-    <canvas class="visualizer" width="640" height="100"></canvas> 
+      <div class="select">
+        <div id="muteMo" style="display: inline-block"></div>
+          <input type="checkbox" id="muteMonitor" style="display: none" value="yes" checked="true">
+          <label>Mute Monitoring Signal</label>
+      </div>
+      <div class="select">
+        <div  id="muteMy" style="display:inline-block"></div>
+        <input type="checkbox" id="muteMe" style="display: none" value="yes" checked="true">
+        <label>Mute Myself</label>
+      </div>
+      <div class="select">
+        <label>Audio input source: </label>
+        <select id="audioSource"></select>
+        <div id="audioSourceSelect" style="display:none"></div>
+      </div>
+      <!-- <div class="label">Local Audio player</div> -->
+      <div style = "display:none">
+        <br>
+        <audio id="webcamVideo"  controls></audio>
+      </div>
+      <h3>Remote Stream Setting</h3>
+      <div class="select">
+        <label>Audio output destination: </label>
+        <select id="audioOutput"></select>
+        <div id="audioOutputSelect" style="display:none"></div>
+      </div>
+      <!-- <div class="label">Remote Audio Player</div> -->
+      <div style = "display:none">
+        <audio id="remoteVideo"  controls></audio>
+      </div>
+      <br>
+      <div id="startDevices" style="display:inline-block"></div>
+      <button id="webcamButton" style="display:none">Start Devices</button>
+    </div>
 
-    <form class="controls">
+    <div>
+      <h2>Step 2: create or join a call</h2>
+      <button id="callButton" disabled>Create Call</button>
+      <input id="callInput">
+      <button id="answerButton" disabled>Answer</button>
+    </div>
+    <div id="callMessage"></div>
+
+    <!-- hangup is hidden until being deployed to real app-->
+    <div style = "display: none;">
+      <h2>Step 3: Hangup</h2>
+      <button id="hangupButton" disabled>Hangup</button>
+    </div>
+
+    <div>
+      <h2>Step 3: Apply FX</h2>
       <div>
-        <label for="voice">Voice setting</label>
-        <select id="voice" name="voice">
-          <option value="distortion">Distortion</option>
-          <option value="convolver">Reverb</option>
-          <option value="biquad">Bass Boost</option>
-          <option value="off" selected>Off</option>
-        </select>
+        <h3>Compressor</h3>
+        <div id="comp_bypass">Bypass</div>
+        <div id="comp_threshold">Threshold</div>
+        <div id="comp_knee">Knee</div>
+        <div id="comp_ratio">Ratio</div>
+        <div id="comp_attack">Attack</div>
+        <div id="comp_release">Release</div>
       </div>
       <div>
-        <label for="visual">Visualizer setting</label>
-        <select id="visual" name="visual">
-          <option value="sinewave">Sinewave</option>
-          <option value="frequencybars" selected>Frequency bars</option>
-          <option value="off">Off</option>
-        </select>
+        <h3>Reverb</h3>
+        <div id="rev_bypass">Bypass</div>
+        <div id="reverb"></div>
       </div>
       <div>
-        <a class="mute">Mute</a>
+        <h3>EQ</h3>
+        <div id="eq_bypass">Bypass</div>
+        <div id="eq_type">Filter Type</div>
+        <div id="eq_freq">Filter Freq</div>
+        <div id="eq1">LowFreq</div>
+        <div id="eq2">MidFreq</div>
+        <div id="eq3">HighFreq</div>
       </div>
-    </form>
-
-
-  </div>
-
-  <label for="toggle">❔</label>
-  <input type="checkbox" id="toggle">
-  <aside>
-    <h2>Information</h2>
-
-    <p>Voice-change-O-matic is built using:</p>
-
-    <ul>
-
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getUserMedia">getUserMedia</a>, which is currently supported in Firefox, Opera (desktop/mobile) and Chrome (desktop only.) Firefox requires no prefix; the others require <code>webkit</code> prefixes.</li>
-
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>, which is currently supported in Firefox, Chrome, Safari (desktop/mobile) and Opera (desktop only). Firefox and Opera require no prefix; Chrome requires <code>webkit</code> prefixes.</li>
-
-    </ul>
+      <div>
+        <h3>Gain</h3>
+        <div id="gain_bypass">Bypass</div>
+        <div id="gain"></div>
+      </div>
+      <div>
+        <h3>Pan</h3>
+        <div id="pan_bypass">Bypass</div>
+        <div id="pan"></div>
+      </div>
+      <h3>Oscilloscope</h3>
+      <div id="oScope"></div>
+      <h3>Spectrogram</h3>
+      <div id="spec"></div>
+    </div>
 
 
 
-    <button id="install-btn">Install app</button>
-  </aside>
-
-  <!-- The following element pulls in the script for the default template functionality -->
-      
-    <script src="scripts/install.js"></script>  
-
-    <!-- Below is your custom application script -->
-
-    <script src="scripts/app.js"></script>
-	
-</body>
+    
+  </body>
 </html>
